@@ -5,7 +5,7 @@ import ListProductService from '../typeorm/services/ListProductService';
 import ShowProductService from '../typeorm/services/ShowProductService';
 import UpdateProductService from '../typeorm/services/UpdateProductService';
 
-export default class ProductController {
+export default class ProductsController {
   public async index(request: Request, response: Response): Promise<Response> {
     const listProducts = new ListProductService();
     const products = await listProducts.execute();
@@ -22,7 +22,7 @@ export default class ProductController {
     return response.json(product);
   }
 
-  public async Create(request: Request, response: Response): Promise<Response> {
+  public async create(request: Request, response: Response): Promise<Response> {
     const { name, price, quantity } = request.body;
 
     const createProduct = new CreateProductService();
@@ -35,7 +35,7 @@ export default class ProductController {
     return response.json(product);
   }
 
-  public async Update(request: Request, response: Response): Promise<Response> {
+  public async update(request: Request, response: Response): Promise<Response> {
     const { name, price, quantity } = request.body;
     const { id } = request.params;
 
@@ -50,7 +50,7 @@ export default class ProductController {
     return response.json(product);
   }
 
-  public async Delete(request: Request, response: Response): Promise<Response> {
+  public async delete(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
 
     const deleteProduct = new DeleteProductService();
